@@ -1,5 +1,4 @@
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import "./App.css";
 import PrivateRoute from "./components/PrivateRoute/PrivateRoute";
 import AuthProvider from "./contexts/AuthProvider/AuthProvider";
 import About from "./pages/About/AboutPage";

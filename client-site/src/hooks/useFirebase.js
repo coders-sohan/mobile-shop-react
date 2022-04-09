@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import initializeFirebase from "../components/Firebase/Firebase.init";
 import {
 	getAuth,
@@ -6,6 +6,7 @@ import {
 	signInWithEmailAndPassword,
 	GoogleAuthProvider,
 	signInWithPopup,
+	onAuthStateChanged,
 	updateProfile,
 	sendPasswordResetEmail,
 	signOut,
@@ -60,7 +61,8 @@ const useFirebase = () => {
 				setError(error.message);
 			})
 			.finally(() => setIsLoading(false));
-	};
+			console.log(email, password);
+		};
 
 	const googleSignIn = (location, history) => {
 		setIsLoading(true);
@@ -91,6 +93,20 @@ const useFirebase = () => {
 			})
 			.finally(() => setIsLoading(false));
 	};
+
+	// observe user state
+	useEffect(() => {
+		const unsubscribe = onAuthStateChanged(auth, (user) => {
+			if (user) {
+				// const uid = user.uid;
+				setUser(user);
+			} else {
+				setUser({});
+			}
+			setIsLoading(false);
+		});
+		return () => unsubscribe;
+	}, [auth]);
 
 	const logout = () => {
 		setIsLoading(true);
