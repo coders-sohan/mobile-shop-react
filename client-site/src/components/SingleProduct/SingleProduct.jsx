@@ -1,26 +1,25 @@
 import React from "react";
 
-const SingleProduct = () => {
+const SingleProduct = (props) => {
+	const { name, imgUrl, description, price } = props.product;
+
 	return (
 		<>
 			{/* single product */}
-			<div className="w-full lg:mb-0 mb-8 shadow-lg md:mx-0 mx-1">
-				<div>
+			<div className="border w-full lg:mb-0 mb-8 shadow-lg md:mx-0 mx-1">
+				<div className="pt-5">
 					<img
-						src="https://cdn.tuk.dev/assets/templates/classified/Bitmap.png"
+						src={imgUrl}
 						alt="product_image"
-						className="w-full h-full"
+						className="w-auto mx-auto h-60"
 					/>
 				</div>
 				<div className="bg-white">
 					<div className="py-5 px-7">
 						<div className="flex items-center">
-							<h2 className="text-lg font-semibold">iphone XS</h2>
+							<h2 className="text-lg font-semibold">{name}</h2>
 						</div>
-						<p className="text-xs text-gray-600 mt-2">
-							The Apple iPhone XS is available in 3 colors with 64GB memory.
-							Shoot amazing videos
-						</p>
+						<p className="text-xs text-gray-600 mt-2">{description}</p>
 						<div className="flex mt-4">
 							<div>
 								<p className="text-xs text-gray-600 px-2 bg-gray-200 py-1">
@@ -37,7 +36,7 @@ const SingleProduct = () => {
 							<h2 className="text-gray-700 text-xs font-semibold">
 								Bay Area, San Francisco
 							</h2>
-							<h3 className="text-gray-700 text-xl font-semibold">$350</h3>
+							<h3 className="text-gray-700 text-xl font-semibold">${price}</h3>
 						</div>
 						<div className="mt-4">
 							<div className="text-center">
