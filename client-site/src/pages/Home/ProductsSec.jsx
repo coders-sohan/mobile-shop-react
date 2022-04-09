@@ -7,7 +7,7 @@ const ProductsSec = () => {
 			<div className="bg-white">
 				<div className="mx-auto container">
 					<div className="pt-8">
-						<h1 class="md:text-5xl text-3xl font-bold text-center text-gray-800">
+						<h1 className="md:text-5xl text-3xl font-bold text-center text-gray-800">
 							Our Products
 						</h1>
 					</div>

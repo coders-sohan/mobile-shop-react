@@ -27,7 +27,7 @@ const NewsLetter = () => {
 											<input
 												type="email"
 												id="email"
-												placeholder="johnstark97@gmail.com"
+												placeholder="tonystark2020@gmail.com"
 												className="focus:outline-none focus:border-gray-700 border-gray-300 border rounded-sm py-2 outline-none pl-2 pr-2"
 											/>
 										</div>

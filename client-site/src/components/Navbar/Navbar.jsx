@@ -1,8 +1,11 @@
 import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
+import useAuth from "../../hooks/useAuth";
 
 const Navbar = () => {
 	const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+	const { user, logout } = useAuth();
 
 	return (
 		<>
@@ -57,19 +60,45 @@ const Navbar = () => {
 							</li>
 						</ul>
 						<ul className="flex items-center hidden space-x-4 lg:flex">
-							<li>
-								<NavLink
-									to="/login"
-									className="inline-flex items-center justify-center h-10 px-4 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-gray-800 hover:bg-gray-600 focus:shadow-outline focus:outline-none"
-									aria-label="log in"
-									title="log in"
-								>
-									<span>Log in</span>
-									<span className="mt-1 ml-2">
-										<i className="fas fa-sign-in-alt"></i>
-									</span>
-								</NavLink>
-							</li>
+							{user?.email ? (
+								<>
+									<div>
+										<img
+											className="rounded-full"
+											height="24px"
+											width="24px"
+											src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png"
+											alt="img"
+										/>
+										<span className="text-base">{user.displayName}</span>
+									</div>
+									<button
+										className="inline-flex items-center justify-center h-10 px-4 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-gray-800 hover:bg-gray-600 focus:shadow-outline focus:outline-none"
+										onClick={logout}
+									>
+										<span>Log out</span>
+										<span className="mt-1 ml-2">
+											<i className="fas fa-sign-in-alt"></i>
+										</span>
+									</button>
+								</>
+							) : (
+								<>
+									<li>
+										<NavLink
+											to="/login"
+											className="inline-flex items-center justify-center h-10 px-4 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-gray-800 hover:bg-gray-600 focus:shadow-outline focus:outline-none"
+											aria-label="log in"
+											title="log in"
+										>
+											<span>Log in</span>
+											<span className="mt-1 ml-2">
+												<i className="fas fa-sign-in-alt"></i>
+											</span>
+										</NavLink>
+									</li>
+								</>
+							)}
 							{/* <li>
 								<NavLink
 									to="/register"
@@ -185,7 +214,7 @@ const Navbar = () => {
 														Register
 													</NavLink>
 												</li> */}
-												<li>
+												{/* <li>
 													<NavLink
 														to="/login"
 														className="inline-flex items-center justify-center w-3/4 h-10 px-5 font-medium tracking-wide text-white transition duration-200 rounded bg-gray-800 hover:bg-gray-600 focus:shadow-outline focus:outline-none"
@@ -197,7 +226,48 @@ const Navbar = () => {
 															<i className="fas fa-sign-in-alt"></i>
 														</span>
 													</NavLink>
-												</li>
+												</li> */}
+												{user?.email ? (
+													<>
+														<div>
+															<img
+																className="rounded-full"
+																height="24px"
+																width="24px"
+																src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png"
+																alt="img"
+															/>
+															<span className="text-base">
+																{user.displayName}
+															</span>
+														</div>
+														<button
+															className="inline-flex items-center justify-center h-10 px-4 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-gray-800 hover:bg-gray-600 focus:shadow-outline focus:outline-none"
+															onClick={logout}
+														>
+															<span>Log out</span>
+															<span className="mt-1 ml-2">
+																<i className="fas fa-sign-in-alt"></i>
+															</span>
+														</button>
+													</>
+												) : (
+													<>
+														<li>
+															<NavLink
+																to="/login"
+																className="inline-flex items-center justify-center h-10 px-4 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-gray-800 hover:bg-gray-600 focus:shadow-outline focus:outline-none"
+																aria-label="log in"
+																title="log in"
+															>
+																<span>Log in</span>
+																<span className="mt-1 ml-2">
+																	<i className="fas fa-sign-in-alt"></i>
+																</span>
+															</NavLink>
+														</li>
+													</>
+												)}
 											</ul>
 										</nav>
 									</div>
